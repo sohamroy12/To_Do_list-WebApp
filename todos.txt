@@ -1,2 +1,14 @@
 I learned a lot today
 This is a Test
+clean the bag
+What happened earlier?
+I inserted an empty string. That needs t be resolved.
+SO Empty string issue is resolved now!
+Also all the todos will have its own 
+Also all the todos will have its own todo_key so resolves the issue of 
+Also all the todos will have its own todo_key so resolves the issue of  Duplicate lable
+testing something out
+testing something out again
+lets remove the todos now
+Its working. 
+checking if the brakeline is working
