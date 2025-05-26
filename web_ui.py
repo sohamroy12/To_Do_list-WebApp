@@ -1,25 +1,37 @@
 import streamlit as st
-from streamlit import checkbox
-
 import functions
+import os
+
+if not os.path.exists("todos.txt"):
+    with open('todos.txt', 'w') as file:
+        pass
 
 todos = functions.get_todos()
-todos = [t for t in todos if t.strip() != ""]   # Remove empty entries
+# todos = [t for t in todos if t.strip() != ""]   # Remove empty entries
 
 def add_todo():
-    todo = st.session_state["new_todo"] = "\n"
-    todos.append(todo)
-    functions.write_todos(todos)
-    st.session_state["new_todo"] = ""
+    todo = st.session_state["new_todo"]
+    if todo.strip():  # Avoid empty input
+        todos.append(todo)
+        functions.write_todos(todos)
+        st.session_state["new_todo"] = ""  # Clear the input
+
 
 st.title("My Todos App")
 st.write("This App is designed to increase your productivity")
 
-for i, todo in enumerate(todos):
-    st.checkbox(todo, key=f"todo_{i}")
+for index, todo in enumerate(todos):
+    checked = st.checkbox(todo, key=f"todo_{index}")
+    if checked:
+        todos.pop(index)
+        functions.write_todos(todos)
+        del st.session_state[todo]
+        st.experimental_rerun()
 
 st.text_input(label=" ", label_visibility="collapsed", placeholder="Add new To Do here!",
               on_change=add_todo, key='new_todo')
 
 
+
+print("Hello")
 st.session_state
