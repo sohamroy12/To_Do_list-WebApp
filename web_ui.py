@@ -9,6 +9,9 @@ if not os.path.exists("todos.txt"):
 todos = functions.get_todos()
 # todos = [t for t in todos if t.strip() != ""]   # Remove empty entries
 
+st.title("My Todos App")
+st.write("This App is designed to increase your productivity")
+
 def add_todo():
     todo = st.session_state["new_todo"]
     if todo.strip():  # Avoid empty input
@@ -16,9 +19,8 @@ def add_todo():
         functions.write_todos(todos)
         st.session_state["new_todo"] = ""  # Clear the input
 
-
-st.title("My Todos App")
-st.write("This App is designed to increase your productivity")
+st.text_input(label=" ", label_visibility="collapsed", placeholder="Add new To Do here!",
+              on_change=add_todo, key='new_todo')
 
 for index, todo in enumerate(todos):
     checkbox_key = f"todo_{index}"
@@ -29,11 +31,3 @@ for index, todo in enumerate(todos):
             del st.session_state[checkbox_key]
         st.rerun()
 
-
-st.text_input(label=" ", label_visibility="collapsed", placeholder="Add new To Do here!",
-              on_change=add_todo, key='new_todo')
-
-
-
-print("Hello")
-st.session_state
