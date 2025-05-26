@@ -1,5 +1,5 @@
 So this will create a todo.text file every time its starts
 What will happen if multiple people are using the same url and file to update their todos?
-insert from laptop
-Insert from iphone
-so if multiple people are using this app all will be able to see each others todo list. that is a bulshit app man
+adding another line 1
+adding another line 2
+adding another line 3

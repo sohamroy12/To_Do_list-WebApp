@@ -21,12 +21,14 @@ st.title("My Todos App")
 st.write("This App is designed to increase your productivity")
 
 for index, todo in enumerate(todos):
-    checked = st.checkbox(todo, key=f"todo_{index}")
-    if checked:
+    checkbox_key = f"todo_{index}"
+    if st.checkbox(todo, key=checkbox_key):
         todos.pop(index)
         functions.write_todos(todos)
-        del st.session_state[todo]
-        st.experimental_rerun()
+        if checkbox_key in st.session_state:
+            del st.session_state[checkbox_key]
+        st.rerun()
+
 
 st.text_input(label=" ", label_visibility="collapsed", placeholder="Add new To Do here!",
               on_change=add_todo, key='new_todo')
